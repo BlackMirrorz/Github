@@ -3,6 +3,3 @@ apple_id("apps@twinkl.co.uk")
 
 itc_team_id("1117164") # App Store Connect Team ID
 team_id("YY5Y5N88U4") # Developer Portal Team ID
-
-# For more information about the Appfile, see:
-#     https://docs.fastlane.tools/advanced/#appfile
