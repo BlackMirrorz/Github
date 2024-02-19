@@ -1,0 +1,24 @@
+name: build-ios-app
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      # Correctly indented and uses 'working-directory' instead of 'cd'
+      - name: Set up environment variables
+        run: |
+          echo "APP_STORE_CONNECT_ISSUER_ID=${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}" >> $GITHUB_ENV
+          echo "APP_STORE_CONNECT_KEY_CONTENT=${{ secrets.APP_STORE_CONNECT_KEY_CONTENT }}" >> $GITHUB_ENV
+          echo "APP_STORE_CONNECT_KEY_ID=${{ secrets.APP_STORE_CONNECT_KEY_ID }}" >> $GITHUB_ENV
+          echo "MATCH_PASSWORD=${{ secrets.MATCH_PASSWORD }}" >> $GITHUB_ENV
+        working-directory: Source
+
+      # Uses the 'working-directory' key to specify where to run fastlane
+      - name: Run Fastlane Beta
+        run: fastlane uploadToAppStore
+        working-directory: Source
