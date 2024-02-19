@@ -5,67 +5,67 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="00: app_store_connect_api_key" time="0.00115">
+      <testcase classname="fastlane.lanes" name="00: app_store_connect_api_key" time="0.001421">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="01: Switch to clearDerivedData lane" time="6.2e-05">
+      <testcase classname="fastlane.lanes" name="01: Switch to clearDerivedData lane" time="6.8e-05">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="02: clear_derived_data" time="0.197905">
+      <testcase classname="fastlane.lanes" name="02: clear_derived_data" time="0.000228">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="03: Switch to syncAllCertificates lane" time="8.6e-05">
+      <testcase classname="fastlane.lanes" name="03: Switch to syncAllCertificates lane" time="6.7e-05">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="04: match" time="1.346622">
+      <testcase classname="fastlane.lanes" name="04: match" time="1.475501">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="05: match" time="1.359605">
+      <testcase classname="fastlane.lanes" name="05: match" time="1.326626">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="06: match" time="3.703091">
+      <testcase classname="fastlane.lanes" name="06: match" time="3.986893">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="07: increment_build_number" time="0.177999">
+      <testcase classname="fastlane.lanes" name="07: increment_build_number" time="0.185007">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="08: get_build_number" time="0.053158">
+      <testcase classname="fastlane.lanes" name="08: get_build_number" time="0.054994">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="09: build_app" time="18.505013">
+      <testcase classname="fastlane.lanes" name="09: build_app" time="18.400617">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="10: upload_to_testflight" time="24.581071">
+      <testcase classname="fastlane.lanes" name="10: upload_to_testflight" time="27.495476">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="11: Switch to postUploadMessage lane" time="0.000169">
+      <testcase classname="fastlane.lanes" name="11: Switch to postUploadMessage lane" time="0.000162">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="12: google_chat" time="0.885524">
+      <testcase classname="fastlane.lanes" name="12: google_chat" time="0.941149">
         
       </testcase>
     

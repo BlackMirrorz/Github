@@ -42,12 +42,10 @@ lane :uploadToAppStore do
   $build_number = get_build_number(xcodeproj: "Github.xcodeproj") # Store the build number in a global variable
   
   build_app
- 
   upload_to_testflight(skip_waiting_for_build_processing: true)
   UI.success("✅ Upload Successful")
-
   postUploadMessage
-
+ UI.success("✅ Status Posted To Google Chat")
 end
 
 private_lane :postUploadMessage do
@@ -71,3 +69,10 @@ private_lane :postUploadMessage do
      buttonUrl: "https://appstoreconnect.apple.com"
   )
 end
+
+  lane :beta do
+    setup_ci if ENV['CI']
+    match(type: 'appstore')
+    build_app
+    upload_to_testflight(skip_waiting_for_build_processing: true)
+  end
