@@ -10,6 +10,7 @@ jobs:
        APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
        APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
        APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
+       MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }} 
     steps:
       - uses: actions/checkout@v4
       - name: Echo environment variables
@@ -19,6 +20,7 @@ jobs:
           echo "$APP_STORE_CONNECT_API_KEY_KEY_ID"
           echo "$APP_STORE_CONNECT_API_KEY_ISSUER_ID"
           echo "$APP_STORE_CONNECT_API_KEY_KEY"
+          echo "$MATCH_GIT_BASIC_AUTHORIZATION"
           
       - name: Change to build-ios-app directory and run Fastlane
         working-directory: Source
