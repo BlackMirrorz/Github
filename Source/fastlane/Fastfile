@@ -1,0 +1,73 @@
+
+$build_number = "2"
+$scheme = "Github"
+
+app_store_connect_api_key(
+  key_id: "7Z8FZ6QPVD",
+  issuer_id: "69a6de77-0836-47e3-e053-5b8c7c11a4d1",
+   key_content: "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JR1RBZ0VBTUJNR0J5cUdTTTQ5QWdFR0NDcUdTTTQ5QXdFSEJIa3dkd0lCQVFRZ21WRmVERXJ0SjFvWHJ6djMKZS9yMjU3d2xJdEtibTVLYVVtNVZmZFJDV0lXZ0NnWUlLb1pJemowREFRZWhSQU5DQUFTejFrVnBlZDArQXp4eQpvbUtPQi9FQ2FzcU0xS3U0N0hGb2c0bjJQTmdKTXBSTkVVdkE1VytsMHRFSHRYbmVJMGs4SGJDL2VXdVo2cU9YCjJ3NXVaRUNhCi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0=",
+  is_key_content_base64: true,
+  in_house: false
+)
+
+
+desc "Sync Certificates And Update For New Devices"
+lane :syncAllCertificates do
+  match(readonly: true, type: "appstore", force_for_new_devices: true)
+  UI.success("✅ App Store Certificate Synced")
+  match(readonly: true, type: "development", force_for_new_devices: true)
+  UI.success("✅ Development Certificate Synced")
+end
+
+desc "Installs SwiftLint & Swift Format"
+lane :configureDependencies do
+  sh('./twinklIOSConfiguration.sh')
+end
+
+desc "Clear Derived Data"
+lane :clearDerivedData do
+  clear_derived_data
+  UI.success("✅ Derived Data Cleared")
+end
+
+desc "Uploads The App To The AppStore"
+lane :uploadToAppStore do
+  UI.message("🚀 Starting Release Lane")
+  clearDerivedData
+  syncAllCertificates
+  match(type: 'appstore')
+  
+  # Increment and get the new build number
+  increment_build_number(xcodeproj: "Github.xcodeproj")
+  $build_number = get_build_number(xcodeproj: "Github.xcodeproj") # Store the build number in a global variable
+  
+  build_app
+ 
+  upload_to_testflight(skip_waiting_for_build_processing: true)
+  UI.success("✅ Upload Successful")
+
+  postUploadMessage
+
+end
+
+private_lane :postUploadMessage do
+  # Ensure the global variable has a value
+  unless $build_number
+    UI.error("Build number not found. Make sure the uploadToAppStore lane is executed first.")
+    return
+  end
+
+   UI.message("Current scheme: #{$scheme}")
+
+  # Modify the message to include lane name and build number
+  google_chat(
+    imageUrl: 'https://pbs.twimg.com/profile_images/571414468974739456/XtEn7sJS_400x400.png',
+    webhook: 'https://chat.googleapis.com/v1/spaces/AAAAZjqiOlE/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=fLc_S8U5xATOsHQP2y95nZbzF4OabB9jeRYYGECpQeA',
+    title: 'AppStore Connect',
+    description: "🚀 #{$scheme} v#{$build_number} Successfully Deployed",
+    section1Title: "",
+    section1Description: "Learn More",
+     buttonTitle: "Goto App Store",
+     buttonUrl: "https://appstoreconnect.apple.com"
+  )
+end

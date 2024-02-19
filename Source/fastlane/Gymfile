@@ -1,0 +1,13 @@
+# App scheme name
+scheme("Github")
+# Provide provisioning profiles to use
+export_options({
+   method: "app-store",
+   provisioningProfiles: {
+     "co.uk.twinkl.githubTests" => "match AppStore co.uk.twinkl.githubTests"
+   }
+})
+
+output_directory("./fastlane/appStoreBuild")
+include_bitcode(false)
+include_symbols(false)
