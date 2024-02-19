@@ -8,7 +8,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      
+        - name: Change to Source directory
+       run: cd Source
       - name: Set up environment variables
         run: |
           echo "APP_STORE_CONNECT_ISSUER_ID=${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}" >> $GITHUB_ENV
