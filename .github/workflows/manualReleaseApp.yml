@@ -23,4 +23,4 @@ jobs:
       - name: Change to build-ios-app directory and run Fastlane
         working-directory: Source
         run: |
-          fastlane beta
+          fastlane uploadToAppStore
