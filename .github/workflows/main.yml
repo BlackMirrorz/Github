@@ -1,0 +1,19 @@
+name: build-ios-app
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up environment variables
+        run: |
+          echo "APP_STORE_CONNECT_ISSUER_ID=${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}" >> $GITHUB_ENV
+          echo "APP_STORE_CONNECT_KEY_CONTENT=${{ secrets.APP_STORE_CONNECT_KEY_CONTENT }}" >> $GITHUB_ENV
+          echo "APP_STORE_CONNECT_KEY_ID=${{ secrets.APP_STORE_CONNECT_KEY_ID }}" >> $GITHUB_ENV
+          echo "MATCH_PASSWORD=${{ secrets.MATCH_PASSWORD }}" >> $GITHUB_ENV
+
+      - run: fastlane beta
