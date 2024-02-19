@@ -69,10 +69,9 @@ private_lane :postUploadMessage do
   )
 end
 
-  lane :beta do
-
-   setup_ci
-    match(type: 'appstore')
-    build_app
-    upload_to_testflight(skip_waiting_for_build_processing: true)
-  end
+lane :release do
+	setup_ci
+	syncAllCertificates
+	build_app
+	upload_to_testflight
+end
