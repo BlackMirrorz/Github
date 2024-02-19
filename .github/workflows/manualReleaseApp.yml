@@ -23,6 +23,6 @@ jobs:
       - name: Change to build-ios-app directory and run Fastlane
         working-directory: Source
         run: |
-          fastlane uploadToAppStore --verbose
+          fastlane beta
           # It's not safe to directly echo secrets, so this line is commented out
           # echo "${{ secrets.P8_AUTH_KEY }}" > secretKey.p8
