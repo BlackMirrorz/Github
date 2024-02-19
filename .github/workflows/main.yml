@@ -20,5 +20,5 @@ jobs:
 
       # Uses the 'working-directory' key to specify where to run fastlane
       - name: Run Fastlane Beta
-        run: fastlane beta
+        run: fastlane uploadToAppStore
         working-directory: Source
