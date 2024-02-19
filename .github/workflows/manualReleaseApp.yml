@@ -15,14 +15,12 @@ jobs:
       - name: Echo environment variables
         run: |
           # Use conditional checks to ensure secrets are set, without directly echoing them
-          if [ -z "$env:SUPER_SECRET" ]; then echo "MATCH_PASSWORD is not set"; else echo "MATCH_PASSWORD is set"; fi
-          if [ -z "${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}" ]; then echo "APP_STORE_CONNECT_API_KEY_KEY_ID is not set"; else echo "APP_STORE_CONNECT_API_KEY_KEY_ID is set"; fi
-          if [ -z "${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}" ]; then echo "APP_STORE_CONNECT_API_KEY_ISSUER_ID is not set"; else echo "APP_STORE_CONNECT_API_KEY_ISSUER_ID is set"; fi
-          if [ -z "${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}" ]; then echo "APP_STORE_CONNECT_API_KEY_KEY is not set"; else echo "APP_STORE_CONNECT_API_KEY_KEY is set"; fi
-
+          echo $env:MATCH_PASSWORD
+          echo $env:APP_STORE_CONNECT_API_KEY_KEY_ID
+          echo $env:APP_STORE_CONNECT_API_KEY_ISSUER_ID
+          echo $env:APP_STORE_CONNECT_API_KEY_KEY
+          
       - name: Change to build-ios-app directory and run Fastlane
         working-directory: Source
         run: |
           fastlane beta
-          # It's not safe to directly echo secrets, so this line is commented out
-          # echo "${{ secrets.P8_AUTH_KEY }}" > secretKey.p8
