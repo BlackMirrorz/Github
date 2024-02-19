@@ -14,10 +14,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Echo environment variables
         run: |
-          echo "MATCH_PASSWORD is set"
-          echo "APP_STORE_CONNECT_API_KEY_KEY_ID is set"
-          echo "APP_STORE_CONNECT_API_KEY_ISSUER_ID is set"
-          echo "APP_STORE_CONNECT_API_KEY_KEY is set"
           # Use conditional checks to ensure secrets are set, without directly echoing them
           if [ -z "${{ secrets.MATCH_PASSWORD }}" ]; then echo "MATCH_PASSWORD is not set"; else echo "MATCH_PASSWORD is set"; fi
           if [ -z "${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}" ]; then echo "APP_STORE_CONNECT_API_KEY_KEY_ID is not set"; else echo "APP_STORE_CONNECT_API_KEY_KEY_ID is set"; fi
