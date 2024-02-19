@@ -1,4 +1,4 @@
-git_url("https://github.com/BlackMirrorz/twinkl-fastlane-ios")
+git_url("git@github.com:BlackMirrorz/twinkl-fastlane-ios.git")
 
 storage_mode("git")
 

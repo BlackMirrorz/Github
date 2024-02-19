@@ -13,9 +13,9 @@ app_store_connect_api_key(
 
 desc "Sync Certificates And Update For New Devices"
 lane :syncAllCertificates do
-  match(readonly: true, type: "appstore", force_for_new_devices: true)
+  match(readonly: true, verbose: true, type: "appstore", force_for_new_devices: true)
   UI.success("✅ App Store Certificate Synced")
-  match(readonly: true, type: "development", force_for_new_devices: true)
+  match(readonly: true, verbose: true, type: "development", force_for_new_devices: true)
   UI.success("✅ Development Certificate Synced")
 end
 
