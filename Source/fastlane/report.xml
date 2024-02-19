@@ -5,67 +5,17 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="00: app_store_connect_api_key" time="0.001222">
+      <testcase classname="fastlane.lanes" name="0: app_store_connect_api_key" time="0.001691">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="01: Switch to clearDerivedData lane" time="7.7e-05">
+      <testcase classname="fastlane.lanes" name="1: match" time="3.012836">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="02: clear_derived_data" time="0.033171">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="03: Switch to syncAllCertificates lane" time="7.7e-05">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="04: match" time="3.58409">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="05: match" time="3.230554">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="06: match" time="5.5885">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="07: increment_build_number" time="0.171457">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="08: get_build_number" time="0.052933">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="09: build_app" time="19.833558">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="10: upload_to_testflight" time="26.084851">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="11: Switch to postUploadMessage lane" time="0.00011">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="12: google_chat" time="1.850326">
+      <testcase classname="fastlane.lanes" name="2: match" time="3.347734">
         
       </testcase>
     
