@@ -79,7 +79,6 @@ app_store_connect_api_key(
   in_house: false
 )
 
-    setup_ci if ENV['CI']
     match(type: 'appstore')
     build_app
     upload_to_testflight(skip_waiting_for_build_processing: true)
