@@ -6,19 +6,26 @@ jobs:
   build:
     runs-on: macos-latest
     env:
-       MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-       APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
-       APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
-       APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
+      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+      APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+      APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+      APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
     steps:
       - uses: actions/checkout@v4
+      
+      # Setup SSH Agent
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
       - name: Echo environment variables
         run: |
           # Use conditional checks to ensure secrets are set, without directly echoing them
-          echo "$MATCH_PASSWORD"
-          echo "$APP_STORE_CONNECT_API_KEY_KEY_ID"
-          echo "$APP_STORE_CONNECT_API_KEY_ISSUER_ID"
-          echo "$APP_STORE_CONNECT_API_KEY_KEY"
+          if [ -z "$MATCH_PASSWORD" ]; then echo "MATCH_PASSWORD is not set"; else echo "MATCH_PASSWORD is set"; fi
+          if [ -z "$APP_STORE_CONNECT_API_KEY_KEY_ID" ]; then echo "APP_STORE_CONNECT_API_KEY_KEY_ID is not set"; else echo "APP_STORE_CONNECT_API_KEY_KEY_ID is set"; fi
+          if [ -z "$APP_STORE_CONNECT_API_KEY_ISSUER_ID" ]; then echo "APP_STORE_CONNECT_API_KEY_ISSUER_ID is not set"; else echo "APP_STORE_CONNECT_API_KEY_ISSUER_ID is set"; fi
+          if [ -z "$APP_STORE_CONNECT_API_KEY_KEY" ]; then echo "APP_STORE_CONNECT_API_KEY_KEY is not set"; else echo "APP_STORE_CONNECT_API_KEY_KEY is set"; fi
           
       - name: Change to build-ios-app directory and run Fastlane
         working-directory: Source
