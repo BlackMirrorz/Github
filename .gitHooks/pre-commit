@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Example: Run SwiftFormat before each commit
+if command -v swiftformat &> /dev/null; then
+    swiftformat . || {
+        echo '❌ SwiftFormat Failed To Complete!' >&2
+        exit 1
+    }
+    echo '✅ SwiftFormat Completed Successfully.'
+else
+    echo '❌ SwiftFormat Was Not Found On Your Machine' >&2
+    exit 1
+fi
+
+# Example: Run SwiftLint before each commit
+if command -v swiftlint &> /dev/null; then
+    swiftlint || {
+        echo '❌ SwiftLint Failed To Complete!' >&2
+        exit 1
+    }
+    echo '✅ Completed Successfully.'
+else
+    echo '❌ SwiftLint Was Not Found On Your Machine' >&2
+    exit 1
+fi
+
+echo '🫠 Linting & Formatting Completed Successfully.'
+exit 0

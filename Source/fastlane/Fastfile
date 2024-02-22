@@ -32,6 +32,9 @@ end
 desc "Uploads The App To The AppStore"
 lane :uploadToAppStore do
   UI.message("🚀 Starting Release Lane")
+
+  setup_ci()
+
   clearDerivedData
   syncAllCertificates
   match(type: 'appstore')
