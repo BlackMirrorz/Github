@@ -4,7 +4,7 @@ $scheme = "Github"
 app_store_connect_api_key(
   key_id: ENV['APP_STORE_CONNECT_API_KEY_KEY_ID'],
   issuer_id: ENV['APP_STORE_CONNECT_API_KEY_ISSUER_ID'],
-  key_content: ENV['APP_STORE_CONNECT_API_KEY_KEY'],
+  key_content: ENV['APP_STORE_CONNECT_API_KEY_KEY'].gsub('\n', '\\n'),
   is_key_content_base64: true,
   in_house: false
 )
@@ -72,19 +72,9 @@ private_lane :postUploadMessage do
   )
 end
 
-  lane :beta do
-
-app_store_connect_api_key(
-  key_id: ENV['APP_STORE_CONNECT_API_KEY_KEY_ID'],
-  issuer_id: ENV['APP_STORE_CONNECT_API_KEY_ISSUER_ID'],
-  key_content: ENV['APP_STORE_CONNECT_API_KEY_KEY'],
-  is_key_content_base64: true,
-  in_house: false
-)
-
-
-    setup_ci if ENV['CI']
-    match(type: 'appstore')
-    build_app
-    upload_to_testflight(skip_waiting_for_build_processing: true)
-  end
+lane :release do
+	setup_ci
+	syncAllCertificates
+	build_app
+	upload_to_testflight
+end
